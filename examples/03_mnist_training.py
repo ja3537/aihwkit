@@ -21,7 +21,6 @@ for epochs 0–10, 11–20, and 21–30, respectively.
 # pylint: disable=invalid-name
 
 import os
-from time import time
 
 # Imports from PyTorch.
 import torch
@@ -36,7 +35,6 @@ from aihwkit.simulator.configs import SingleRPUConfig
 from aihwkit.simulator.configs.devices import ConstantStepDevice
 from aihwkit.simulator.rpu_base import cuda
 import time
-
 # Check device
 USE_CUDA = 0
 if cuda.is_compiled():
@@ -128,7 +126,7 @@ def train(model, train_set):
     optimizer = create_sgd_optimizer(model)
     scheduler = StepLR(optimizer, step_size=10, gamma=0.5)
 
-    time_init = time()
+    time_init = time.time()
     for epoch_number in range(EPOCHS):
         total_loss = 0
         for images, labels in train_set:
@@ -156,7 +154,7 @@ def train(model, train_set):
         # Decay learning rate if needed.
         scheduler.step()
 
-    print('\nTraining Time (s) = {}'.format(time()-time_init))
+    print('\nTraining Time (s) = {}'.format(time.time()-time_init))
 
 
 def test_evaluation(model, val_set):
