@@ -35,6 +35,7 @@ from aihwkit.optim import AnalogSGD
 from aihwkit.simulator.configs import SingleRPUConfig
 from aihwkit.simulator.configs.devices import ConstantStepDevice
 from aihwkit.simulator.rpu_base import cuda
+import time
 
 # Check device
 USE_CUDA = 0
@@ -203,5 +204,9 @@ def main():
 
 
 if __name__ == '__main__':
+    start = time.time()
     # Execute only if run as the entry point into the program.
     main()
+    end = time.time()
+
+    print("time taken: ", end-start)

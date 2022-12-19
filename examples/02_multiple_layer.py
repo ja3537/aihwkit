@@ -28,7 +28,9 @@ from aihwkit.nn import AnalogLinear
 from aihwkit.optim import AnalogSGD
 from aihwkit.simulator.configs import SingleRPUConfig
 from aihwkit.simulator.configs.devices import ConstantStepDevice
+import time
 
+start = time.time()
 # Prepare the datasets (input and expected output).
 x_b = Tensor([[0.1, 0.2, 0.0, 0.0], [0.2, 0.4, 0.0, 0.0]])
 y_b = Tensor([[0.3], [0.6]])
@@ -54,3 +56,7 @@ for epoch in range(100):
 
     opt.step()
     print('Loss error: {:.16f}'.format(loss))
+
+end = time.time()
+
+print('time taken: ', end-start)
