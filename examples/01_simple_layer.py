@@ -27,7 +27,9 @@ from aihwkit.optim import AnalogSGD
 from aihwkit.simulator.configs import SingleRPUConfig
 from aihwkit.simulator.configs.devices import ConstantStepDevice
 from aihwkit.simulator.rpu_base import cuda
+import time
 
+start = time.time()
 # Prepare the datasets (input and expected output).
 x = Tensor([[0.1, 0.2, 0.4, 0.3], [0.2, 0.1, 0.1, 0.3]])
 y = Tensor([[1.0, 0.5], [0.7, 0.3]])
@@ -57,3 +59,7 @@ for epoch in range(100):
 
     opt.step()
     print('Loss error: {:.16f}'.format(loss))
+
+end = time.time()
+
+print("time taken: ", end-start)
